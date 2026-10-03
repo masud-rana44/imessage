@@ -1,8 +1,10 @@
 import express from "express";
 import cors from "cors"
 import "dotenv/config";
+import { clerkMiddleware } from "@clerk/express";
+
 import { connectDB } from "./lib/db.js";
-import { clerkMiddleware } from "@clerk/express"
+import job from "./lib/corn.js";
 
 import path from "path";
 import fs from "fs";
@@ -35,4 +37,6 @@ if(fs.existsSync(publicDir)) {
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server running on port ${PORT}`)
+
+  if(process.env.NODE_ENV === "production") job.start();
 });
