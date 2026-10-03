@@ -4,7 +4,7 @@ import "dotenv/config";
 import { clerkMiddleware } from "@clerk/express";
 
 import { connectDB } from "./lib/db.js";
-import job from "./lib/corn.js";
+import job from "./lib/cron.js";
 
 import path from "path";
 import fs from "fs";
