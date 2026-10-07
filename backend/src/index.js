@@ -11,8 +11,7 @@ import messageRoutes from "./routes/message.route.js";
 
 import path from "path";
 import fs from "fs";
-
-const app = express();
+import { app, server } from "./lib/socket.js";
 
 const PORT = process.env.PORT || 3000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
@@ -42,9 +41,9 @@ if(fs.existsSync(publicDir)) {
   })
 }
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectDB();
   console.log(`Server running on port ${PORT}`)
 
   if(process.env.NODE_ENV === "production") job.start();
-});
+})
